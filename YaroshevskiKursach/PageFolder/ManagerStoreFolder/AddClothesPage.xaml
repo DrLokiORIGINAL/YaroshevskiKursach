@@ -1,0 +1,103 @@
+﻿<Page x:Class="YaroshevskiKursach.PageFolder.ManagerStoreFolder.AddClothesPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:YaroshevskiKursach.PageFolder.ManagerStoreFolder"
+      mc:Ignorable="d" 
+      d:DesignHeight="650" d:DesignWidth="800"
+      Title="AddClothesPage">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="180"/>
+            <ColumnDefinition Width="350"/>
+            <ColumnDefinition Width="270"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="70"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Label Content="Коллекция" Style="{DynamicResource NormalLabelStyle}"
+         
+               Grid.Row="1" Grid.Column="1"/>
+
+        <ComboBox x:Name="CollectionCB"
+                  Grid.Column="2" 
+                  Grid.Row="1"
+                  SelectedItem="{Binding Collection}"
+                  DisplayMemberPath="NameCollection"
+                  SelectedValuePath="IdCollection"
+                  Width="Auto"/>
+
+        <Label Content="Сезон" 
+               Style="{DynamicResource NormalLabelStyle}"
+               Grid.Row="2" Grid.Column="1"/>
+        <ComboBox x:Name="SeasonCB"
+                  Grid.Column="2" 
+                  Grid.Row="2"
+                  SelectedItem="{Binding Season}"
+                  DisplayMemberPath="NameSeason"
+                  SelectedValuePath="IdSeason"
+                  Width="Auto"/>
+
+        <Label Content="Тип одежды" Style="{DynamicResource NormalLabelStyle}"
+               Grid.Row="3" Grid.Column="1"/>
+        <ComboBox x:Name="TypeOfClothingCB"
+                  Grid.Column="2" 
+                  Grid.Row="3"
+                  SelectedItem="{Binding TypeOfClothing}"
+                  DisplayMemberPath="NameIdTypeOfClothing"
+                  SelectedValuePath="IdTypeOfClothing"
+                  Width="Auto"/>
+
+        <Label Content="Пол" Style="{DynamicResource NormalLabelStyle}"
+               Grid.Row="4" Grid.Column="1"/>
+        <ComboBox x:Name="GenderCB"
+                  Grid.Column="2" 
+                  Grid.Row="4"
+                  SelectedItem="{Binding Gender}"
+                  DisplayMemberPath="NameGender"
+                  SelectedValuePath="IdGender"
+                  Width="Auto"/>
+
+        <Label Content="Вид одежды" Style="{DynamicResource NormalLabelStyle}"
+               Grid.Row="5" Grid.Column="1"/>
+        <ComboBox x:Name="ViewOfClothingCB"
+                  Grid.Column="2" 
+                  Grid.Row="5"
+                  SelectedItem="{Binding ViewOfClothing}"
+                  DisplayMemberPath="NameIdViewIdOfClothing"
+                  SelectedValuePath="IdViewIdOfClothing"
+                  Width="Auto"/>
+
+        <Image x:Name="PhotoIm"
+               Grid.Column="3"
+               Grid.Row="1"
+               Grid.RowSpan="5"
+               Stretch="Fill"
+               Margin="10"/>
+
+        <Button x:Name="LoadIm" Content="Загрузить фото"
+                Grid.Column="3" Grid.Row="6"
+                Click="LoadIm_Click"
+                Margin="20 20 20 20"/>
+
+        <Button x:Name="AddClothesBtn" Content="Добавить"
+                Grid.Column="2" 
+                Grid.Row="6"
+                Click="AddClothesBtn_Click"
+                Margin="20 20 20 20"/>
+
+    </Grid>
+</Page>

@@ -1,0 +1,97 @@
+﻿<Page x:Class="YaroshevskiKursach.PageFolder.ManagerStoreFolder.ListClothesPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:YaroshevskiKursach.PageFolder.ManagerStoreFolder"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      MinHeight="450" MaxHeight="450"
+      MinWidth="800" MaxWidth="800"
+      Title="ListClothesPage">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Label Content="Поиск"
+               Style="{DynamicResource LabelLogoStyle}"
+               BorderBrush="Black"
+                 BorderThickness="0"/>
+        <TextBox x:Name="SearchTB"
+                 Grid.Column="1"
+                 Width="Auto"
+                 TextChanged="SearchTB_TextChanged"/>
+        <ListBox Grid.Row="1"
+                 Grid.ColumnSpan="2"
+                 x:Name="ListReaderLB"
+                 SelectionMode="Multiple">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="70"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Image Grid.RowSpan="4" Source="{Binding PhotoClothes}"/>
+                        <TextBlock Grid.Column="2"
+                            Style="{DynamicResource StyleTextBlock}">
+                            <Run Text="Коллекция" FontWeight="Bold"/>
+                            <Run Text="{Binding Collection.NameCollection}"/>
+                        </TextBlock>
+                        <TextBlock Grid.Column="1"
+                            Style="{DynamicResource StyleTextBlock}">
+                            <Run Text="Сезон" FontWeight="Bold"/>
+                            <Run Text="{Binding Season.NameSeason}"/>
+                        </TextBlock>
+                        <TextBlock Grid.Row="1" Grid.Column="1"
+                            Style="{DynamicResource StyleTextBlock}">
+                            <Run Text="Тип одежды" FontWeight="Bold"/>
+                            <Run Text="{Binding TypeOfClothing.NameIdTypeOfClothing}"/>
+                        </TextBlock>
+                        <TextBlock Grid.Row="2" Grid.Column="1"
+                            Style="{DynamicResource StyleTextBlock}">
+                            <Run Text="Вид одежды" FontWeight="Bold"/>
+                            <Run Text="{Binding ViewOfClothing.NameIdViewIdOfClothing}"/>
+                        </TextBlock>
+                        <TextBlock Grid.Row="3" Grid.Column="1"
+                            Style="{DynamicResource StyleTextBlock}">
+                            <Run Text="Пол" FontWeight="Bold"/>
+                            <Run Text="{Binding Gender.NameGender}"/>
+                        </TextBlock>
+                        <TextBlock Grid.Row="3" Grid.Column="2"
+                                   Style="{DynamicResource StyleTextBlock}">
+                            <TextBlock.Text>
+                                <MultiBinding 
+                                    StringFormat="{} Коллекция: {0}, Сезон: {1}, Тип одежды: {2}, Вид одежды: {3}, Пол: {4}">
+                                    <Binding Path="Clothes.Collection.NameCollection"/>
+                                    <Binding Path="Clothes.Season.NameSeason"/>
+                                    <Binding Path="Clothes.Street.NameStreet"/>
+                                    <Binding Path="Clothes.TypeOfClothing.NameIdTypeOfClothing"/>
+                                    <Binding Path="Clothes.TypeOfClothing.ViewIdOfClothing.NameIdViewIdOfClothing"/>
+                                </MultiBinding>
+                            </TextBlock.Text>
+                        </TextBlock>
+
+
+
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+
+        </ListBox>
+
+    </Grid>
+</Page>

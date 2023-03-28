@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c56493d67fd941989e148fd6f1c2ee28" Name="Diagram1">
+        <EntityTypeShape EntityType="DBModel.AvailabilityInternet" Width="1.5" PointX="7.5" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModel.AvailabilityLocal" Width="1.5" PointX="7.5" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModel.Clothes" Width="1.5" PointX="6" PointY="18.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModel.Collection" Width="1.5" PointX="3.75" PointY="15.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModel.Gender" Width="1.5" PointX="3.75" PointY="17.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModel.Product" Width="1.5" PointX="8.25" PointY="19" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModel.Role" Width="1.5" PointX="0.75" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModel.Sale" Width="1.5" PointX="7.5" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModel.Season" Width="1.5" PointX="3.75" PointY="20.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModel.Staff" Width="1.5" PointX="5.25" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModel.Store" Width="1.5" PointX="10.5" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModel.TypeOfClothing" Width="1.5" PointX="3.75" PointY="22.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModel.User" Width="1.5" PointX="3" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModel.ViewOfClothing" Width="1.5" PointX="1.5" PointY="22.75" IsExpanded="true" />
+        <AssociationConnector Association="DBModel.FK_AvailabilityInternet_Staff" ManuallyRouted="false" />
+        <AssociationConnector Association="DBModel.FK_AvailabilityInternet_Store" ManuallyRouted="false" />
+        <AssociationConnector Association="DBModel.FK_AvailabilityLocal_Staff" ManuallyRouted="false" />
+        <AssociationConnector Association="DBModel.FK_AvailabilityLocal_Store" ManuallyRouted="false" />
+        <AssociationConnector Association="DBModel.FK_Clothes_Collection" ManuallyRouted="false" />
+        <AssociationConnector Association="DBModel.FK_Clothes_Gender" ManuallyRouted="false" />
+        <AssociationConnector Association="DBModel.FK_Clothes_Season" ManuallyRouted="false" />
+        <AssociationConnector Association="DBModel.FK_Clothes_TypeOfClothing" ManuallyRouted="false" />
+        <AssociationConnector Association="DBModel.FK_Product_Clothes" ManuallyRouted="false" />
+        <AssociationConnector Association="DBModel.FK_Store_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="DBModel.FK_User_Role" ManuallyRouted="false" />
+        <AssociationConnector Association="DBModel.FK_Sale_Staff" ManuallyRouted="false" />
+        <AssociationConnector Association="DBModel.FK_Staff_User" ManuallyRouted="false" />
+        <AssociationConnector Association="DBModel.FK_Store_Staff" ManuallyRouted="false" />
+        <AssociationConnector Association="DBModel.FK_TypeOfClothing_ViewOfClothing" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
