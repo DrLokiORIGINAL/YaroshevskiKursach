@@ -1,19 +1,9 @@
 ﻿using Microsoft.Win32;
 using System;
-using System.Collections.Generic;
 using System.Data.Entity.Validation;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using YaroshevskiKursach.ClassFolder;
 using YaroshevskiKursach.DataFolder;
 
@@ -25,7 +15,6 @@ namespace YaroshevskiKursach.PageFolder.ManagerStoreFolder
     public partial class AddClothesPage : Page
     {
         Clothes clothes = new Clothes();
-        TypeOfClothing typeOfClothing = new TypeOfClothing();
         public AddClothesPage()
         {
             InitializeComponent();
@@ -43,12 +32,12 @@ namespace YaroshevskiKursach.PageFolder.ManagerStoreFolder
 
         private void AddClothesBtn_Click(object sender, RoutedEventArgs e)
         {
-            try
+            try 
             {
                 ClothesAdd();
-                TypeOfClothingAdd();
 
                 MBClass.InformationMB("Одежда добавлена");
+                NavigationService.Navigate(new ListClothesPage());
             }
             catch (DbEntityValidationException ex)
             {
@@ -58,28 +47,24 @@ namespace YaroshevskiKursach.PageFolder.ManagerStoreFolder
 
         private void ClothesAdd()
         {
-            var clothesAdd = new Clothes()
+            try
             {
-                IdCollection = Int32.Parse(CollectionCB.SelectedValue.ToString()),
-                IdSeason = Int32.Parse(SeasonCB.SelectedValue.ToString()),
-                IdTypeOfClothing = Int32.Parse(TypeOfClothingCB.SelectedValue.ToString()),
-                IdGender = Int32.Parse(GenderCB.SelectedValue.ToString()),
-
-            };
-            DBEntities.GetContext().Clothes.Add(clothesAdd);
-            DBEntities.GetContext().SaveChanges();
-            clothes.IdClothes = clothesAdd.IdClothes;
-        }
-
-        private void TypeOfClothingAdd()
-        {
-            var TypeOfClothingAdd = new TypeOfClothing()
+                var clothesAdd = new Clothes()
+                {
+                    IdCollection = Int32.Parse(CollectionCB.SelectedValue.ToString()),
+                    IdSeason = Int32.Parse(SeasonCB.SelectedValue.ToString()),
+                    IdTypeOfClothing = Int32.Parse(TypeOfClothingCB.SelectedValue.ToString()),
+                    PhotoClothes = ImageClass.ConvertImageToByteArray(selectedFileName),
+                    IdGender = Int32.Parse(GenderCB.SelectedValue.ToString()),
+                    IdViewIdOfClothing = Int32.Parse(ViewOfClothingCB.SelectedValue.ToString()),
+                };
+                DBEntities.GetContext().Clothes.Add(clothesAdd);
+                DBEntities.GetContext().SaveChanges();
+            }
+            catch (Exception ex)
             {
-                IdViewIdOfClothing = Int32.Parse(ViewOfClothingCB.SelectedValue.ToString()),
-            };
-            DBEntities.GetContext().TypeOfClothing.Add(TypeOfClothingAdd);
-            DBEntities.GetContext().SaveChanges();
-            typeOfClothing.IdTypeOfClothing = TypeOfClothingAdd.IdTypeOfClothing;
+                MBClass.ErrorMB(ex);
+            }
         }
 
         string selectedFileName = "";

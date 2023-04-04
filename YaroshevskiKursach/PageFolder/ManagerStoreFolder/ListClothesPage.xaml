@@ -31,6 +31,20 @@
                  Grid.ColumnSpan="2"
                  x:Name="ListReaderLB"
                  SelectionMode="Multiple">
+
+            <ListBox.ContextMenu>
+                <ContextMenu Name="AdtCM">
+                    <MenuItem x:Name="Red"
+                        Header="Редактирование"
+                 Click="Red_Click"/>
+
+                    <Separator/>
+                    <MenuItem x:Name="Del"
+                        Header="Удалить"
+                 Click="Del_Click"/>
+                </ContextMenu>
+            </ListBox.ContextMenu>
+
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Grid>
@@ -46,32 +60,44 @@
                             <RowDefinition/>
                         </Grid.RowDefinitions>
                         <Image Grid.RowSpan="4" Source="{Binding PhotoClothes}"/>
+
                         <TextBlock Grid.Column="2"
+                            Style="{DynamicResource StyleTextBlock}">
+                            <Run Text="Номер" FontWeight="Bold"/>
+                            <Run Text="{Binding IdClothes}"/>
+                        </TextBlock>
+
+                        <TextBlock Grid.Column="1"
                             Style="{DynamicResource StyleTextBlock}">
                             <Run Text="Коллекция" FontWeight="Bold"/>
                             <Run Text="{Binding Collection.NameCollection}"/>
                         </TextBlock>
-                        <TextBlock Grid.Column="1"
+
+                        <TextBlock Grid.Row="1"  Grid.Column="1"
                             Style="{DynamicResource StyleTextBlock}">
                             <Run Text="Сезон" FontWeight="Bold"/>
                             <Run Text="{Binding Season.NameSeason}"/>
                         </TextBlock>
-                        <TextBlock Grid.Row="1" Grid.Column="1"
+
+                        <TextBlock Grid.Row="2" Grid.Column="1"
                             Style="{DynamicResource StyleTextBlock}">
                             <Run Text="Тип одежды" FontWeight="Bold"/>
                             <Run Text="{Binding TypeOfClothing.NameIdTypeOfClothing}"/>
                         </TextBlock>
-                        <TextBlock Grid.Row="2" Grid.Column="1"
+
+                        <TextBlock Grid.Row="3" Grid.Column="1"
                             Style="{DynamicResource StyleTextBlock}">
                             <Run Text="Вид одежды" FontWeight="Bold"/>
                             <Run Text="{Binding ViewOfClothing.NameIdViewIdOfClothing}"/>
                         </TextBlock>
-                        <TextBlock Grid.Row="3" Grid.Column="1"
+
+                        <TextBlock Grid.Row="3" Grid.Column="2"
                             Style="{DynamicResource StyleTextBlock}">
                             <Run Text="Пол" FontWeight="Bold"/>
                             <Run Text="{Binding Gender.NameGender}"/>
                         </TextBlock>
-                        <TextBlock Grid.Row="3" Grid.Column="2"
+
+                        <TextBlock Grid.Row="4" Grid.Column="2"
                                    Style="{DynamicResource StyleTextBlock}">
                             <TextBlock.Text>
                                 <MultiBinding 
@@ -80,18 +106,13 @@
                                     <Binding Path="Clothes.Season.NameSeason"/>
                                     <Binding Path="Clothes.Street.NameStreet"/>
                                     <Binding Path="Clothes.TypeOfClothing.NameIdTypeOfClothing"/>
-                                    <Binding Path="Clothes.TypeOfClothing.ViewIdOfClothing.NameIdViewIdOfClothing"/>
+                                    <Binding Path="Clothes.TypeOfClothing.NameIdViewIdOfClothing"/>
                                 </MultiBinding>
                             </TextBlock.Text>
                         </TextBlock>
-
-
-
                     </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>
-
         </ListBox>
-
     </Grid>
 </Page>

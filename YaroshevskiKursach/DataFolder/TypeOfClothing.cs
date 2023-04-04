@@ -21,11 +21,9 @@ namespace YaroshevskiKursach.DataFolder
         }
     
         public int IdTypeOfClothing { get; set; }
-        public int IdViewIdOfClothing { get; set; }
         public string NameIdTypeOfClothing { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Clothes> Clothes { get; set; }
-        public virtual ViewOfClothing ViewOfClothing { get; set; }
     }
 }

@@ -4,11 +4,142 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:YaroshevskiKursach.PageFolder.ManagerStoreFolder"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="650" d:DesignWidth="800"
+      MinHeight="650" MaxHeight="650"
+      MinWidth="800" MaxWidth="800"
       Title="EditClothesPage">
 
-    <Grid>
-        
-    </Grid>
+    <Border>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="70"/>
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <Label Content="Редактирование Одежды" 
+                   Grid.Column="0"
+                   Grid.ColumnSpan="3"
+                   Style="{StaticResource LabelLogoStyle}"/>
+
+            <Label Content="Коллекция"
+                   Grid.Row="1"
+                   Grid.Column="0"
+                   Style="{StaticResource NormalLabelStyle}"
+                   HorizontalAlignment="Right"/>
+            
+            <ComboBox x:Name="CollectionCb"
+                      materialDesign:ComboBoxAssist.ClassicMode="True"
+                      Grid.Row="1"
+                      Grid.Column="1"
+                      VerticalAlignment="Top"
+                      FontSize="20"
+                      Margin="15"
+                      SelectedItem="{Binding Collection}" 
+                          DisplayMemberPath="NameCollection"
+                          SelectedValuePath="IdCollection"/>
+
+            <Label Content="Сезон"
+                   Grid.Row="2"
+                   Grid.Column="0"
+                   Style="{StaticResource NormalLabelStyle}"
+                   HorizontalAlignment="Right"/>
+
+            <ComboBox x:Name="SeasonCb"
+                      materialDesign:ComboBoxAssist.ClassicMode="True"
+                      Grid.Row="2"
+                      Grid.Column="1"
+                      VerticalAlignment="Top"
+                      FontSize="20"
+                      Margin="15"
+                      SelectedItem="{Binding Season}" 
+                          DisplayMemberPath="NameSeason"
+                          SelectedValuePath="IdSeason"/>
+
+            <Label Content="Тип одежды"
+                   Grid.Row="3"
+                   Grid.Column="0"
+                   Style="{StaticResource NormalLabelStyle}"
+                   HorizontalAlignment="Right"/>
+
+            <ComboBox x:Name="TypeOfClothingCb"
+                      materialDesign:ComboBoxAssist.ClassicMode="True"
+                      Grid.Row="3"
+                      Grid.Column="1"
+                      VerticalAlignment="Top"
+                      FontSize="20"
+                      Margin="15"
+                      SelectedItem="{Binding TypeOfClothing}" 
+                          DisplayMemberPath="NameIdTypeOfClothing"
+                          SelectedValuePath="IdTypeOfClothing"/>
+
+            <Label Content="Пол"
+                   Grid.Row="4"
+                   Grid.Column="0"
+                   Style="{StaticResource NormalLabelStyle}"
+                   HorizontalAlignment="Right"/>
+
+            <ComboBox x:Name="GenderCb"
+                      materialDesign:ComboBoxAssist.ClassicMode="True"
+                      Grid.Row="4"
+                      Grid.Column="1"
+                      VerticalAlignment="Top"
+                      FontSize="20"
+                      Margin="15"
+                      SelectedItem="{Binding Gender}" 
+                          DisplayMemberPath="NameGender"
+                          SelectedValuePath="IdGender"/>
+
+            <Label Content="Вид одежды"
+                   Grid.Row="5"
+                   Grid.Column="0"
+                   Style="{StaticResource NormalLabelStyle}"
+                   HorizontalAlignment="Right"/>
+
+            <ComboBox x:Name="ViewOfClothingCb"
+                      materialDesign:ComboBoxAssist.ClassicMode="True"
+                      Grid.Row="5"
+                      Grid.Column="1"
+                      VerticalAlignment="Top"
+                      FontSize="20"
+                      Margin="15"
+                      SelectedItem="{Binding ViewOfClothing}" 
+                          DisplayMemberPath="NameIdViewIdOfClothing"
+                          SelectedValuePath="IdViewIdOfClothing"/>
+
+            <Button x:Name="SaveBtn" Content="Сохранить изменения"
+                    Grid.Row="6"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    Margin="20 20 20 20"
+                    Click="SaveBtn_Click"/>
+
+            <Image x:Name="PhotoIm"
+               Grid.Column="3"
+               Grid.Row="1"
+               Grid.RowSpan="5"
+               Stretch="Fill"
+               Margin="10"/>
+
+            <Button x:Name="LoadIm" Content="Загрузить фото"
+                Grid.Column="3" Grid.Row="6"
+                Click="LoadIm_Click"
+                Margin="20 20 20 20"/>
+
+        </Grid>
+    </Border>
 </Page>

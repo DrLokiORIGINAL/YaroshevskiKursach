@@ -27,7 +27,7 @@ namespace YaroshevskiKursach.DataFolder
         public string LastNameStaff { get; set; }
         public string FirstNameStaff { get; set; }
         public string MiddleNameStaff { get; set; }
-        public int PhoneNubmerStaff { get; set; }
+        public string PhoneNubmerStaff { get; set; }
         public string EmailStaff { get; set; }
         public int IdUser { get; set; }
     

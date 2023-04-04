@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using YaroshevskiKursach.ClassFolder;
+using YaroshevskiKursach.DataFolder;
 
 namespace YaroshevskiKursach.PageFolder.DirectorPageFolder
 {
@@ -23,6 +25,24 @@ namespace YaroshevskiKursach.PageFolder.DirectorPageFolder
         public AddDirPage()
         {
             InitializeComponent();
+            UserCb.ItemsSource = DBEntities.GetContext()
+                .User.ToList();
+        }
+
+        private void AddBtn_Click(object sender, RoutedEventArgs e)
+        {
+            DBEntities.GetContext().Staff.Add(new Staff()
+            {
+                LastNameStaff = LastNameTb.Text,
+                FirstNameStaff = FirstNameTb.Text,
+                MiddleNameStaff = MiddleNameTb.Text,
+                PhoneNubmerStaff = PhoneNubmerTb.Text,
+                EmailStaff = EmailTb.Text,
+                IdUser = Int32.Parse(UserCb.SelectedValue.ToString()),
+            });
+            DBEntities.GetContext().SaveChanges();
+            MBClass.InformationMB("Успешно");
+            NavigationService.Navigate(new ListDirPage());
         }
     }
 }

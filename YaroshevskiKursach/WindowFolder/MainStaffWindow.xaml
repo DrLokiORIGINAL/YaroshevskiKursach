@@ -98,7 +98,7 @@
                                                      Width="25"
                                                      Height="25"
                                                      VerticalAlignment="Center"/>
-                                <TextBlock Text="Список в онлайн"
+                                <TextBlock Text="Список в оффлайн"
                                            Margin="5 10 10 10"/>
                             </StackPanel>
                         </ListViewItem>
@@ -110,11 +110,37 @@
                                                      Width="25"
                                                      Height="25"
                                                      VerticalAlignment="Center"/>
-                                <TextBlock Text="Заказ в онлайн"
+                                <TextBlock Text="Заказ в оффлайн"
                                            Margin="5 10 10 10"/>
                             </StackPanel>
                         </ListViewItem>
                         
+                        <Separator Background="Black"/>
+
+                        <ListViewItem x:Name="ListSale" 
+                                      Height="60">
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon x:Name="MenuSaleBtn"
+                                                     Kind="ListBox"
+                                                     Width="25"
+                                                     Height="25"
+                                                     VerticalAlignment="Center"/>
+                                <TextBlock Text="Список продаж"
+                                           Margin="5 10 10 10"/>
+                            </StackPanel>
+                        </ListViewItem>
+                        <ListViewItem x:Name="AddSale" 
+                                      Height="60">
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon x:Name="AddSaleBtn"
+                                                     Kind="Add"
+                                                     Width="25"
+                                                     Height="25"
+                                                     VerticalAlignment="Center"/>
+                                <TextBlock Text="Добавить продажу"
+                                           Margin="5 10 10 10"/>
+                            </StackPanel>
+                        </ListViewItem>
                     </ListView>
                 </StackPanel>
             </Grid>

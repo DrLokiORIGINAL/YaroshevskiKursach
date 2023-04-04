@@ -28,7 +28,7 @@ namespace YaroshevskiKursach.PageFolder.AdminPageFolder
             RoleCb.ItemsSource = DBEntities.GetContext()
                 .Role.ToList();
         }
-
+        
         private void SaveBtn_Click(object sender, RoutedEventArgs e)
         {
             DBEntities.GetContext().User.Add(new User()

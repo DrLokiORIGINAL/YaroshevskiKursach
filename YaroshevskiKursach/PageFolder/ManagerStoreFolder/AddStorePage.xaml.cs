@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using YaroshevskiKursach.ClassFolder;
+using YaroshevskiKursach.DataFolder;
 
 namespace YaroshevskiKursach.PageFolder.ManagerStoreFolder
 {
@@ -20,9 +22,36 @@ namespace YaroshevskiKursach.PageFolder.ManagerStoreFolder
     /// </summary>
     public partial class AddStorePage : Page
     {
+        Store store = new Store();
         public AddStorePage()
         {
             InitializeComponent();
+            ProductCb.ItemsSource = DBEntities.GetContext()
+                .Product.ToList();
+            StaffCb.ItemsSource = DBEntities.GetContext()
+                .Staff.ToList();
+        }
+
+        private void AddBtn_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var storeAdd = new Store()
+                {
+                    IdProduct = Int32.Parse(ProductCb.SelectedValue.ToString()),
+                    IdStaff = Int32.Parse(StaffCb.SelectedValue.ToString()),
+                    NumberOfProductsStore = NumberOfProductsStoreTb.Text,
+                    TotalCostStore = Decimal.Parse(TotalCostStoreTb.Text),
+                };
+                DBEntities.GetContext().Store.Add(storeAdd);
+                DBEntities.GetContext().SaveChanges();
+                MBClass.InformationMB("Товар добавлен");
+                NavigationService.Navigate(new ListStorePage());
+            }
+            catch (Exception ex)
+            {
+                MBClass.ErrorMB(ex);
+            }
         }
     }
 }

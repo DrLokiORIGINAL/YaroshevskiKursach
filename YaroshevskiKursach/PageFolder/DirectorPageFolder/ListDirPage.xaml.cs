@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using YaroshevskiKursach.ClassFolder;
+using YaroshevskiKursach.DataFolder;
 
 namespace YaroshevskiKursach.PageFolder.DirectorPageFolder
 {
@@ -23,6 +25,61 @@ namespace YaroshevskiKursach.PageFolder.DirectorPageFolder
         public ListDirPage()
         {
             InitializeComponent();
+            ListStaffDG.ItemsSource = DBEntities.GetContext().Staff.ToList()
+                .OrderBy(c => c.IdStaff);
+        }
+
+        private void Red_Click(object sender, RoutedEventArgs e)
+        {
+            if (ListStaffDG.SelectedItem == null)
+            {
+                MBClass.ErrorMB("Выберите " +
+                    "пользователя для редактирования");
+            }
+            else
+            {
+                NavigationService.Navigate(
+                    new EditDirPage(ListStaffDG.SelectedItem as Staff));
+            }
+        }
+
+        private void Del_Click(object sender, RoutedEventArgs e)
+        {
+            Staff staff = ListStaffDG.SelectedItem as Staff;
+
+            if (ListStaffDG.SelectedItem == null)
+            {
+                MBClass.ErrorMB("Выберите сотрудника" +
+                    " для удаления");
+            }
+            else
+            {
+                if (MBClass.QestionMB("Удалить " +
+                    $"сотрудника с фамилией " +
+                    $"{staff.LastNameStaff}?"))
+                {
+                    DBEntities.GetContext().Staff
+                        .Remove(ListStaffDG.SelectedItem as Staff);
+                    DBEntities.GetContext().SaveChanges();
+
+                    MBClass.InformationMB("Сотрудник удален");
+                    ListStaffDG.ItemsSource = DBEntities.GetContext()
+                        .Staff.ToList().OrderBy(u => u.IdStaff);
+                }
+
+            }
+        }
+
+        private void SearchTb_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            ListStaffDG.ItemsSource = DBEntities.GetContext()
+                .Staff.Where(u => u.LastNameStaff
+                .StartsWith(SearchTb.Text))
+                .ToList().OrderBy(u => u.LastNameStaff);
+            if (ListStaffDG.Items.Count <= 0)
+            {
+                MBClass.ErrorMB("Данные не найдены");
+            }
         }
     }
 }

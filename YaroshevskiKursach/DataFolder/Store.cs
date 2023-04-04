@@ -24,7 +24,7 @@ namespace YaroshevskiKursach.DataFolder
         public int IdStore { get; set; }
         public int IdProduct { get; set; }
         public int IdStaff { get; set; }
-        public int NumberOfProductsStore { get; set; }
+        public string NumberOfProductsStore { get; set; }
         public decimal TotalCostStore { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

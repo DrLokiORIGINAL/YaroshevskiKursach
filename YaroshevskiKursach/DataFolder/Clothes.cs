@@ -26,11 +26,13 @@ namespace YaroshevskiKursach.DataFolder
         public int IdTypeOfClothing { get; set; }
         public byte[] PhotoClothes { get; set; }
         public int IdGender { get; set; }
+        public int IdViewIdOfClothing { get; set; }
     
         public virtual Collection Collection { get; set; }
         public virtual Gender Gender { get; set; }
         public virtual Season Season { get; set; }
         public virtual TypeOfClothing TypeOfClothing { get; set; }
+        public virtual ViewOfClothing ViewOfClothing { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Product> Product { get; set; }
     }

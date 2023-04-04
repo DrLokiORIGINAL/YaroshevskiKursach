@@ -6,6 +6,8 @@
       xmlns:local="clr-namespace:YaroshevskiKursach.PageFolder.ManagerStoreFolder"
       mc:Ignorable="d" 
       d:DesignHeight="650" d:DesignWidth="800"
+      MinHeight="650" MaxHeight="650"
+      MinWidth="800" MaxWidth="800"
       Title="AddClothesPage">
 
     <Grid>
@@ -24,10 +26,13 @@
             <RowDefinition Height="70"/>
             <RowDefinition Height="70"/>
             <RowDefinition Height="70"/>
-            <RowDefinition Height="70"/>
-            <RowDefinition Height="70"/>
             <RowDefinition />
         </Grid.RowDefinitions>
+
+        <Label Content="Добавление одежды" Grid.Column="1"
+                   Grid.ColumnSpan="3"
+                   Style="{StaticResource LabelLogoStyle}"/>
+
         <Label Content="Коллекция" Style="{DynamicResource NormalLabelStyle}"
          
                Grid.Row="1" Grid.Column="1"/>
@@ -35,6 +40,7 @@
         <ComboBox x:Name="CollectionCB"
                   Grid.Column="2" 
                   Grid.Row="1"
+                  FontSize="20"
                   SelectedItem="{Binding Collection}"
                   DisplayMemberPath="NameCollection"
                   SelectedValuePath="IdCollection"
@@ -46,6 +52,7 @@
         <ComboBox x:Name="SeasonCB"
                   Grid.Column="2" 
                   Grid.Row="2"
+                  FontSize="20"
                   SelectedItem="{Binding Season}"
                   DisplayMemberPath="NameSeason"
                   SelectedValuePath="IdSeason"
@@ -56,6 +63,7 @@
         <ComboBox x:Name="TypeOfClothingCB"
                   Grid.Column="2" 
                   Grid.Row="3"
+                  FontSize="20"
                   SelectedItem="{Binding TypeOfClothing}"
                   DisplayMemberPath="NameIdTypeOfClothing"
                   SelectedValuePath="IdTypeOfClothing"
@@ -66,6 +74,7 @@
         <ComboBox x:Name="GenderCB"
                   Grid.Column="2" 
                   Grid.Row="4"
+                  FontSize="20"
                   SelectedItem="{Binding Gender}"
                   DisplayMemberPath="NameGender"
                   SelectedValuePath="IdGender"
@@ -76,6 +85,7 @@
         <ComboBox x:Name="ViewOfClothingCB"
                   Grid.Column="2" 
                   Grid.Row="5"
+                  FontSize="20"
                   SelectedItem="{Binding ViewOfClothing}"
                   DisplayMemberPath="NameIdViewIdOfClothing"
                   SelectedValuePath="IdViewIdOfClothing"
@@ -94,10 +104,11 @@
                 Margin="20 20 20 20"/>
 
         <Button x:Name="AddClothesBtn" Content="Добавить"
-                Grid.Column="2" 
+                Grid.Column="1"
+                Grid.ColumnSpan="2"
                 Grid.Row="6"
                 Click="AddClothesBtn_Click"
-                Margin="20 20 20 20"/>
+                Margin="20 20 20 20" Cursor="Hand"/>
 
     </Grid>
 </Page>

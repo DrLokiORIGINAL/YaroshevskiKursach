@@ -204,17 +204,26 @@
     <Compile Include="PageFolder\StaffFolder\AddOnlinePage.xaml.cs">
       <DependentUpon>AddOnlinePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PageFolder\StaffFolder\AddSalePage.xaml.cs">
+      <DependentUpon>AddSalePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PageFolder\StaffFolder\EditOfflinePage.xaml.cs">
       <DependentUpon>EditOfflinePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="PageFolder\StaffFolder\EditOnlinePage.xaml.cs">
       <DependentUpon>EditOnlinePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PageFolder\StaffFolder\EditSalePage.xaml.cs">
+      <DependentUpon>EditSalePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PageFolder\StaffFolder\ListOfflinePage.xaml.cs">
       <DependentUpon>ListOfflinePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="PageFolder\StaffFolder\ListOnlinePage.xaml.cs">
       <DependentUpon>ListOnlinePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageFolder\StaffFolder\ListSalePage.xaml.cs">
+      <DependentUpon>ListSalePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="WindowFolder\AuthorizationWindow.xaml.cs">
       <DependentUpon>AuthorizationWindow.xaml</DependentUpon>
@@ -266,7 +275,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="SQL\" />
+  </ItemGroup>
   <ItemGroup>
     <Page Include="PageFolder\AdminPageFolder\AddAdminPage.xaml">
       <SubType>Designer</SubType>
@@ -340,6 +351,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="PageFolder\StaffFolder\AddSalePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="PageFolder\StaffFolder\EditOfflinePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -348,11 +363,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="PageFolder\StaffFolder\EditSalePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="PageFolder\StaffFolder\ListOfflinePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="PageFolder\StaffFolder\ListOnlinePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PageFolder\StaffFolder\ListSalePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -403,7 +426,6 @@
       <DependentUpon>DBModel.edmx</DependentUpon>
       <LastGenOutput>DBModel.cs</LastGenOutput>
     </Content>
-    <Content Include="SQL\scriptKursach.sql" />
     <Resource Include="ResourceFolder\ImageFolder\Администратор.png" />
     <Resource Include="ResourceFolder\ImageFolder\Бренд.jpg" />
     <Resource Include="ResourceFolder\ImageFolder\Директор.png" />

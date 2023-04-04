@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using YaroshevskiKursach.ClassFolder;
+using YaroshevskiKursach.DataFolder;
 
 namespace YaroshevskiKursach.PageFolder.StaffFolder
 {
@@ -20,9 +22,35 @@ namespace YaroshevskiKursach.PageFolder.StaffFolder
     /// </summary>
     public partial class EditOnlinePage : Page
     {
-        public EditOnlinePage()
+        AvailabilityInternet availabilityInternet = new AvailabilityInternet();
+        public EditOnlinePage(AvailabilityInternet availabilityInternet)
         {
             InitializeComponent();
+            DataContext = availabilityInternet;
+            this.availabilityInternet.IdAvailabilityInternet = availabilityInternet.IdAvailabilityInternet;
+            StoreCb.ItemsSource = DBEntities.GetContext()
+                .Store.ToList();
+            StaffCb.ItemsSource = DBEntities.GetContext()
+                .AvailabilityInternet.ToList();
+        }
+
+        private void EditBtn_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                AvailabilityInternet availabilityInternet = DBEntities.GetContext().AvailabilityInternet.
+                FirstOrDefault(s => s.IdAvailabilityInternet == VariableClass.IdOnline);
+                availabilityInternet.IdStore = Int32.Parse(StoreCb.Text);
+                availabilityInternet.IdStaff = Int32.Parse(StaffCb.Text);
+                availabilityInternet.QuantityAvailabilityInternet = Int32.Parse(QuantitySaleTb.Text);
+                DBEntities.GetContext().SaveChanges();
+                MBClass.InformationMB("Товар в онлайн успешно отредактирован");
+                NavigationService.Navigate(new ListOnlinePage());
+            }
+            catch (Exception ex)
+            {
+                MBClass.ErrorMB(ex);
+            }
         }
     }
 }

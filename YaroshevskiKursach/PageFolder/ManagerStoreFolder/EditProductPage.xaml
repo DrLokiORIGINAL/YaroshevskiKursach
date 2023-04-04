@@ -4,11 +4,90 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:YaroshevskiKursach.PageFolder.ManagerStoreFolder"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="550" d:DesignWidth="800"
+      MinHeight="550" MaxHeight="550"
+      MinWidth="800" MaxWidth="800"
       Title="EditProductPage">
 
-    <Grid>
-        
-    </Grid>
+    <Border>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="70"/>
+            </Grid.RowDefinitions>
+
+            <Label Content="Редактирование продукта" 
+                   Grid.Column="0"
+                   Grid.ColumnSpan="3"
+                   Style="{StaticResource LabelLogoStyle}"/>
+
+            <Label Content="О продукте"
+                   Grid.Row="3"
+                   Grid.Column="0"
+                   Style="{StaticResource NormalLabelStyle}"
+                   HorizontalAlignment="Right"/>
+
+            <TextBox x:Name="AllTB"
+                     Grid.Row="3" 
+                     Grid.Column="1"
+                     Grid.RowSpan="2"
+                     Grid.ColumnSpan="2"
+                     Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                     Margin="10 10 10 10"
+                     BorderBrush="Black"
+                     Text="{Binding AllAboutProduct}"/>
+
+            <Label Content="Цена"
+                   Grid.Row="2"
+                   Grid.Column="0"
+                   Style="{StaticResource NormalLabelStyle}"
+                   HorizontalAlignment="Right"/>
+
+            <TextBox x:Name="PriceTB"
+                     Grid.Row="2" Grid.Column="1"
+                     Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                     Margin="10 10 10 10"
+                     BorderBrush="Black"
+                     Text="{Binding PriceForOneUnitProduct}"/>
+
+            <Label Content="Код одежды"
+                   Grid.Row="1"
+                   Grid.Column="0"
+                   Style="{StaticResource NormalLabelStyle}"
+                   HorizontalAlignment="Right"/>
+
+            <ComboBox x:Name="ClothesCb"
+                      materialDesign:ComboBoxAssist.ClassicMode="True"
+                      Grid.Row="1"
+                      Grid.Column="1"
+                      VerticalAlignment="Top"
+                      FontSize="20"
+                      Margin="15"
+                      SelectedItem="{Binding Clothes}" 
+                          DisplayMemberPath="IdClothes"
+                          SelectedValuePath="IdClothes"/>
+
+            <Button x:Name="SaveBtn" 
+                    Content="Сохранить изменения"
+                    Grid.Row="5"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="3"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    Margin="20 20 20 20"
+                    Click="SaveBtn_Click"/>
+        </Grid>
+    </Border>
 </Page>

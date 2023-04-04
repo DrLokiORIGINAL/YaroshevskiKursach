@@ -6,9 +6,98 @@
       xmlns:local="clr-namespace:YaroshevskiKursach.PageFolder.ManagerStoreFolder"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
+      MinHeight="450" MaxHeight="450"
+      MinWidth="800" MaxWidth="800"
       Title="ListProductPage">
 
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Label Content="Поиск"
+               Style="{DynamicResource LabelLogoStyle}"
+               BorderBrush="Black"
+                 BorderThickness="0"/>
+        <TextBox x:Name="SearchTB"
+                 Grid.Column="1"
+                 Width="Auto"
+                 TextChanged="SearchTB_TextChanged"/>
+        <ListBox Grid.Row="1"
+                 Grid.ColumnSpan="2"
+                 x:Name="ListProductLB"
+                 SelectionMode="Multiple">
+
+            <ListBox.ContextMenu>
+                <ContextMenu Name="AdtCM">
+                    <MenuItem x:Name="Red"
+                        Header="Редактирование"
+                 Click="Red_Click"/>
+
+                    <Separator/>
+                    <MenuItem x:Name="Del"
+                        Header="Удалить"
+                 Click="Del_Click"/>
+                </ContextMenu>
+            </ListBox.ContextMenu>
+
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="70"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        
+                        <Image Grid.RowSpan="4" Source="{Binding Clothes.PhotoClothes}"/>
+
+                        <TextBlock Grid.Column="2"
+                            Style="{DynamicResource StyleTextBlock}">
+                            <Run Text="Код продукта" FontWeight="Bold"/>
+                            <Run Text="{Binding IdProduct}"/>
+                        </TextBlock>
+
+                        <TextBlock Grid.Column="1"
+                            Style="{DynamicResource StyleTextBlock}">
+                            <Run Text="Все о продукте" FontWeight="Bold"/>
+                            <Run Text="{Binding AllAboutProduct}"/>
+                        </TextBlock>
+                        
+                        <TextBlock Grid.Row="1" 
+                                   Grid.Column="1"
+                            Style="{DynamicResource StyleTextBlock}">
+                            <Run Text="Цена за 1 шт." 
+                                 FontWeight="Bold"/>
+                            <Run Text="{Binding PriceForOneUnitProduct}"/>
+                        </TextBlock>
+                        
+                        <TextBlock Grid.Row="3" 
+                                   Grid.Column="2"
+                                   Style="{DynamicResource StyleTextBlock}">
+                            <TextBlock.Text>
+                                <MultiBinding 
+                                    StringFormat="{} Номер продукта: {0}, Все о товаре: {1}, Цена товара: {2}">
+                                    <Binding Path="Product.IdProduct"/>
+                                    <Binding Path="Product.AllAboutProduct"/>
+                                    <Binding Path="Product.PriceForOneUnitProduct"/>
+                                </MultiBinding>
+                            </TextBlock.Text>
+                        </TextBlock>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </Grid>
 </Page>

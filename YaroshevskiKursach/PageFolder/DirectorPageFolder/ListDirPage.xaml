@@ -4,11 +4,74 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:YaroshevskiKursach.PageFolder.DirectorPageFolder"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
+      MaxHeight="450" MaxWidth="800"
+      MinHeight="450" MinWidth="800"
       Title="ListDirPage">
 
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <TextBox x:Name="SearchTb"
+                 materialDesign:HintAssist.Hint="Поиск"
+                 TextChanged="SearchTb_TextChanged"
+                 Grid.ColumnSpan="2" BorderBrush="Black"
+                 BorderThickness="2"/>
+
+        <DataGrid x:Name="ListStaffDG" IsReadOnly="True"
+                 AutoGenerateColumns="False" Grid.ColumnSpan="2"
+                 Grid.Row="1" Foreground="Black"
+                  BorderBrush="Black">
+            <DataGrid.ContextMenu>
+                <ContextMenu Name="AdtCM">
+                    <MenuItem x:Name="Red"
+                        Header="Редактирование"
+                 Click="Red_Click"/>
+
+                    <Separator/>
+                    <MenuItem x:Name="Del"
+                        Header="Удалить"
+                 Click="Del_Click"/>
+
+                </ContextMenu>
+            </DataGrid.ContextMenu>
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="№ п/п" 
+                                    Binding="{Binding IdStaff}"
+                                    Width="*"/>
+                
+                <DataGridTextColumn Header="Фамилия сотрудника" 
+                                    Binding="{Binding LastNameStaff}"
+                                    Width="*"/>
+                
+                <DataGridTextColumn Header="Имя сотрудника" 
+                                    Binding="{Binding FirstNameStaff}"
+                                    Width="*"/>
+                
+                <DataGridTextColumn Header="Отчество сотрудника" 
+                                    Binding="{Binding MiddleNameStaff}"
+                                    Width="*"/>
+                
+                <DataGridTextColumn Header="Номер телефона сотрудника" 
+                                    Binding="{Binding PhoneNubmerStaff}"
+                                    Width="*"/>
+
+                <DataGridTextColumn Header="Эл. почта сотрудника" 
+                                    Binding="{Binding EmailStaff}"
+                                    Width="*"/>
+
+                <DataGridTextColumn Header="Пользователь" 
+                                    Binding="{Binding User.LoginUser}"
+                                    Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Page>

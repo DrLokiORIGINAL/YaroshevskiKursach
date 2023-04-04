@@ -17,13 +17,13 @@ namespace YaroshevskiKursach.DataFolder
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public ViewOfClothing()
         {
-            this.TypeOfClothing = new HashSet<TypeOfClothing>();
+            this.Clothes = new HashSet<Clothes>();
         }
     
         public int IdViewIdOfClothing { get; set; }
         public string NameIdViewIdOfClothing { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TypeOfClothing> TypeOfClothing { get; set; }
+        public virtual ICollection<Clothes> Clothes { get; set; }
     }
 }

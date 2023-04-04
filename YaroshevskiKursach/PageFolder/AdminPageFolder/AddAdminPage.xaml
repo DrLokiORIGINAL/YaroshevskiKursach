@@ -13,7 +13,8 @@
 
     <Border>
         <Grid>
-            <Label Content="Добавление пользователя" Grid.Column="0"
+            <Label Content="Добавление пользователя" 
+                   Grid.Column="0"
                    Grid.ColumnSpan="2"
                    Style="{DynamicResource LabelLogoStyle}"/>
 
@@ -59,7 +60,8 @@
                                      BorderThickness="0 0 0 1.5"
                      Text="{Binding LoginUser}"/>
 
-            <Button x:Name="SaveBtn" Content="Добавить пользоваетля"
+            <Button x:Name="SaveBtn" 
+                    Content="Добавить пользоваетля"
                     Grid.Row="4"
                     Grid.Column="0"
                     Grid.ColumnSpan="2"

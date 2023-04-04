@@ -4,11 +4,82 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:YaroshevskiKursach.PageFolder.StaffFolder"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="400" d:DesignWidth="800"
+      MaxHeight="400" MaxWidth="800"
+      MinHeight="400" MinWidth="800"
       Title="EditOnlinePage">
 
-    <Grid>
-        
-    </Grid>
+    <Border>
+        <Grid>
+            <Label Content="Редактирование товаров в онлайн" 
+                   Grid.Column="0"
+                   Grid.ColumnSpan="2"
+                   Style="{StaticResource LabelLogoStyle}"/>
+
+            <TextBox x:Name="QuantitySaleTb"
+                     materialDesign:HintAssist.Hint="Количество проданных товаров в онлайн"
+                     materialDesign:HintAssist.FontFamily="Cascadia Code SemiLight"
+                     materialDesign:HintAssist.HintOpacity="10"
+                     FontSize="20"
+                     Grid.Row="3"
+                     Grid.Column="0"
+                     Grid.ColumnSpan="2"
+                     VerticalAlignment="Top"
+                         Margin="150 15 150 3"
+                         materialDesign:HintAssist.FloatingOffset="0,-20"
+                                     BorderBrush="Black"
+                                     BorderThickness="0 0 0 1.5"
+                     Text="{Binding QuantityAvailabilityInternet}"/>
+
+            <ComboBox x:Name="StoreCb"
+                      materialDesign:ComboBoxAssist.ClassicMode="True"
+                      Grid.Row="1"
+                      Grid.Column="0"
+                      Grid.ColumnSpan="2"
+                      Margin="150 15 150 3"
+                      VerticalAlignment="Top"
+                      FontSize="20"
+                      FontFamily="Cascadia Code SemiLight"
+                      SelectedItem="{Binding Store}" 
+                          DisplayMemberPath="IdStore"
+                          SelectedValuePath="IdStore"/>
+
+            <ComboBox x:Name="StaffCb"
+                      materialDesign:ComboBoxAssist.ClassicMode="True"
+                      Grid.Row="2"
+                      Grid.Column="0"
+                      Grid.ColumnSpan="2"
+                      Margin="150 15 150 3"
+                      VerticalAlignment="Top"
+                      FontSize="20"
+                      FontFamily="Cascadia Code SemiLight"
+                      SelectedItem="{Binding Staff}" 
+                          DisplayMemberPath="LastNameStaff"
+                          SelectedValuePath="IdStaff"/>
+
+            <Button x:Name="EditBtn" Content="Сохранить изменения"
+                    Grid.Row="4"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    Click="EditBtn_Click" Cursor="Hand"
+                    Margin="50 10 50 10"/>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="80"/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+        </Grid>
+    </Border>
 </Page>

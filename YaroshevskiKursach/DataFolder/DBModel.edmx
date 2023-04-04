@@ -31,8 +31,9 @@
           <Property Name="IdCollection" Type="int" Nullable="false" />
           <Property Name="IdSeason" Type="int" Nullable="false" />
           <Property Name="IdTypeOfClothing" Type="int" Nullable="false" />
-          <Property Name="PhotoClothes" Type="image" Nullable="false" />
+          <Property Name="PhotoClothes" Type="varbinary(max)" Nullable="false" />
           <Property Name="IdGender" Type="int" Nullable="false" />
+          <Property Name="IdViewIdOfClothing" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Collection">
           <Key>
@@ -45,7 +46,7 @@
           <Key>
             <PropertyRef Name="IdGender" />
           </Key>
-          <Property Name="IdGender" Type="int" Nullable="false" />
+          <Property Name="IdGender" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="NameGender" Type="nvarchar" MaxLength="15" Nullable="false" />
         </EntityType>
         <EntityType Name="Product">
@@ -53,7 +54,7 @@
             <PropertyRef Name="IdProduct" />
           </Key>
           <Property Name="IdProduct" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="AllAboutProduct" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="AllAboutProduct" Type="nvarchar" MaxLength="150" />
           <Property Name="PriceForOneUnitProduct" Type="decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="IdClothes" Type="int" Nullable="false" />
         </EntityType>
@@ -88,7 +89,7 @@
           <Property Name="LastNameStaff" Type="nvarchar" MaxLength="25" Nullable="false" />
           <Property Name="FirstNameStaff" Type="nvarchar" MaxLength="30" Nullable="false" />
           <Property Name="MiddleNameStaff" Type="nvarchar" MaxLength="50" />
-          <Property Name="PhoneNubmerStaff" Type="int" Nullable="false" />
+          <Property Name="PhoneNubmerStaff" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="EmailStaff" Type="nvarchar" MaxLength="75" Nullable="false" />
           <Property Name="IdUser" Type="int" Nullable="false" />
         </EntityType>
@@ -99,7 +100,7 @@
           <Property Name="IdStore" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IdProduct" Type="int" Nullable="false" />
           <Property Name="IdStaff" Type="int" Nullable="false" />
-          <Property Name="NumberOfProductsStore" Type="int" Nullable="false" />
+          <Property Name="NumberOfProductsStore" Type="nvarchar" MaxLength="5" Nullable="false" />
           <Property Name="TotalCostStore" Type="decimal" Precision="10" Scale="2" Nullable="false" />
         </EntityType>
         <EntityType Name="sysdiagrams">
@@ -117,7 +118,6 @@
             <PropertyRef Name="IdTypeOfClothing" />
           </Key>
           <Property Name="IdTypeOfClothing" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="IdViewIdOfClothing" Type="int" Nullable="false" />
           <Property Name="NameIdTypeOfClothing" Type="nvarchar" MaxLength="30" Nullable="false" />
         </EntityType>
         <EntityType Name="User">
@@ -232,6 +232,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Clothes_ViewOfClothing">
+          <End Role="ViewOfClothing" Type="Self.ViewOfClothing" Multiplicity="1" />
+          <End Role="Clothes" Type="Self.Clothes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ViewOfClothing">
+              <PropertyRef Name="IdViewIdOfClothing" />
+            </Principal>
+            <Dependent Role="Clothes">
+              <PropertyRef Name="IdViewIdOfClothing" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Product_Clothes">
           <End Role="Clothes" Type="Self.Clothes" Multiplicity="1" />
           <End Role="Product" Type="Self.Product" Multiplicity="*" />
@@ -289,18 +301,6 @@
             </Principal>
             <Dependent Role="Store">
               <PropertyRef Name="IdStaff" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_TypeOfClothing_ViewOfClothing">
-          <End Role="ViewOfClothing" Type="Self.ViewOfClothing" Multiplicity="1" />
-          <End Role="TypeOfClothing" Type="Self.TypeOfClothing" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ViewOfClothing">
-              <PropertyRef Name="IdViewIdOfClothing" />
-            </Principal>
-            <Dependent Role="TypeOfClothing">
-              <PropertyRef Name="IdViewIdOfClothing" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -395,6 +395,10 @@
             <End Role="TypeOfClothing" EntitySet="TypeOfClothing" />
             <End Role="Clothes" EntitySet="Clothes" />
           </AssociationSet>
+          <AssociationSet Name="FK_Clothes_ViewOfClothing" Association="Self.FK_Clothes_ViewOfClothing">
+            <End Role="ViewOfClothing" EntitySet="ViewOfClothing" />
+            <End Role="Clothes" EntitySet="Clothes" />
+          </AssociationSet>
           <AssociationSet Name="FK_Product_Clothes" Association="Self.FK_Product_Clothes">
             <End Role="Clothes" EntitySet="Clothes" />
             <End Role="Product" EntitySet="Product" />
@@ -414,10 +418,6 @@
           <AssociationSet Name="FK_Store_Staff" Association="Self.FK_Store_Staff">
             <End Role="Staff" EntitySet="Staff" />
             <End Role="Store" EntitySet="Store" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TypeOfClothing_ViewOfClothing" Association="Self.FK_TypeOfClothing_ViewOfClothing">
-            <End Role="ViewOfClothing" EntitySet="ViewOfClothing" />
-            <End Role="TypeOfClothing" EntitySet="TypeOfClothing" />
           </AssociationSet>
           <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
             <End Role="Role" EntitySet="Role" />
@@ -461,10 +461,12 @@
           <Property Name="IdTypeOfClothing" Type="Int32" Nullable="false" />
           <Property Name="PhotoClothes" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
           <Property Name="IdGender" Type="Int32" Nullable="false" />
+          <Property Name="IdViewIdOfClothing" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Collection" Relationship="Self.FK_Clothes_Collection" FromRole="Clothes" ToRole="Collection" />
           <NavigationProperty Name="Gender" Relationship="Self.FK_Clothes_Gender" FromRole="Clothes" ToRole="Gender" />
           <NavigationProperty Name="Season" Relationship="Self.FK_Clothes_Season" FromRole="Clothes" ToRole="Season" />
           <NavigationProperty Name="TypeOfClothing" Relationship="Self.FK_Clothes_TypeOfClothing" FromRole="Clothes" ToRole="TypeOfClothing" />
+          <NavigationProperty Name="ViewOfClothing" Relationship="Self.FK_Clothes_ViewOfClothing" FromRole="Clothes" ToRole="ViewOfClothing" />
           <NavigationProperty Name="Product" Relationship="Self.FK_Product_Clothes" FromRole="Clothes" ToRole="Product" />
         </EntityType>
         <EntityType Name="Collection">
@@ -479,7 +481,7 @@
           <Key>
             <PropertyRef Name="IdGender" />
           </Key>
-          <Property Name="IdGender" Type="Int32" Nullable="false" />
+          <Property Name="IdGender" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NameGender" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Clothes" Relationship="Self.FK_Clothes_Gender" FromRole="Gender" ToRole="Clothes" />
         </EntityType>
@@ -488,7 +490,7 @@
             <PropertyRef Name="IdProduct" />
           </Key>
           <Property Name="IdProduct" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="AllAboutProduct" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AllAboutProduct" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="PriceForOneUnitProduct" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="IdClothes" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Clothes" Relationship="Self.FK_Product_Clothes" FromRole="Product" ToRole="Clothes" />
@@ -528,7 +530,7 @@
           <Property Name="LastNameStaff" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="FirstNameStaff" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="MiddleNameStaff" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="PhoneNubmerStaff" Type="Int32" Nullable="false" />
+          <Property Name="PhoneNubmerStaff" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="EmailStaff" Type="String" MaxLength="75" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="IdUser" Type="Int32" Nullable="false" />
           <NavigationProperty Name="AvailabilityInternet" Relationship="Self.FK_AvailabilityInternet_Staff" FromRole="Staff" ToRole="AvailabilityInternet" />
@@ -544,7 +546,7 @@
           <Property Name="IdStore" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="IdProduct" Type="Int32" Nullable="false" />
           <Property Name="IdStaff" Type="Int32" Nullable="false" />
-          <Property Name="NumberOfProductsStore" Type="Int32" Nullable="false" />
+          <Property Name="NumberOfProductsStore" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="TotalCostStore" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
           <NavigationProperty Name="AvailabilityInternet" Relationship="Self.FK_AvailabilityInternet_Store" FromRole="Store" ToRole="AvailabilityInternet" />
           <NavigationProperty Name="AvailabilityLocal" Relationship="Self.FK_AvailabilityLocal_Store" FromRole="Store" ToRole="AvailabilityLocal" />
@@ -566,10 +568,8 @@
             <PropertyRef Name="IdTypeOfClothing" />
           </Key>
           <Property Name="IdTypeOfClothing" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="IdViewIdOfClothing" Type="Int32" Nullable="false" />
           <Property Name="NameIdTypeOfClothing" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Clothes" Relationship="Self.FK_Clothes_TypeOfClothing" FromRole="TypeOfClothing" ToRole="Clothes" />
-          <NavigationProperty Name="ViewOfClothing" Relationship="Self.FK_TypeOfClothing_ViewOfClothing" FromRole="TypeOfClothing" ToRole="ViewOfClothing" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -588,7 +588,7 @@
           </Key>
           <Property Name="IdViewIdOfClothing" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NameIdViewIdOfClothing" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="TypeOfClothing" Relationship="Self.FK_TypeOfClothing_ViewOfClothing" FromRole="ViewOfClothing" ToRole="TypeOfClothing" />
+          <NavigationProperty Name="Clothes" Relationship="Self.FK_Clothes_ViewOfClothing" FromRole="ViewOfClothing" ToRole="Clothes" />
         </EntityType>
         <Association Name="FK_AvailabilityInternet_Staff">
           <End Role="Staff" Type="Self.Staff" Multiplicity="1" />
@@ -686,6 +686,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Clothes_ViewOfClothing">
+          <End Role="ViewOfClothing" Type="Self.ViewOfClothing" Multiplicity="1" />
+          <End Role="Clothes" Type="Self.Clothes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ViewOfClothing">
+              <PropertyRef Name="IdViewIdOfClothing" />
+            </Principal>
+            <Dependent Role="Clothes">
+              <PropertyRef Name="IdViewIdOfClothing" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Product_Clothes">
           <End Role="Clothes" Type="Self.Clothes" Multiplicity="1" />
           <End Role="Product" Type="Self.Product" Multiplicity="*" />
@@ -758,18 +770,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_TypeOfClothing_ViewOfClothing">
-          <End Role="ViewOfClothing" Type="Self.ViewOfClothing" Multiplicity="1" />
-          <End Role="TypeOfClothing" Type="Self.TypeOfClothing" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ViewOfClothing">
-              <PropertyRef Name="IdViewIdOfClothing" />
-            </Principal>
-            <Dependent Role="TypeOfClothing">
-              <PropertyRef Name="IdViewIdOfClothing" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="DBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="AvailabilityInternet" EntityType="Self.AvailabilityInternet" />
           <EntitySet Name="AvailabilityLocal" EntityType="Self.AvailabilityLocal" />
@@ -818,6 +818,10 @@
             <End Role="TypeOfClothing" EntitySet="TypeOfClothing" />
             <End Role="Clothes" EntitySet="Clothes" />
           </AssociationSet>
+          <AssociationSet Name="FK_Clothes_ViewOfClothing" Association="Self.FK_Clothes_ViewOfClothing">
+            <End Role="ViewOfClothing" EntitySet="ViewOfClothing" />
+            <End Role="Clothes" EntitySet="Clothes" />
+          </AssociationSet>
           <AssociationSet Name="FK_Product_Clothes" Association="Self.FK_Product_Clothes">
             <End Role="Clothes" EntitySet="Clothes" />
             <End Role="Product" EntitySet="Product" />
@@ -841,10 +845,6 @@
           <AssociationSet Name="FK_Store_Staff" Association="Self.FK_Store_Staff">
             <End Role="Staff" EntitySet="Staff" />
             <End Role="Store" EntitySet="Store" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TypeOfClothing_ViewOfClothing" Association="Self.FK_TypeOfClothing_ViewOfClothing">
-            <End Role="ViewOfClothing" EntitySet="ViewOfClothing" />
-            <End Role="TypeOfClothing" EntitySet="TypeOfClothing" />
           </AssociationSet>
           <FunctionImport Name="sp_alterdiagram">
             <Parameter Name="diagramname" Mode="In" Type="String" />
@@ -923,6 +923,7 @@
                 <ScalarProperty Name="IdTypeOfClothing" ColumnName="IdTypeOfClothing" />
                 <ScalarProperty Name="PhotoClothes" ColumnName="PhotoClothes" />
                 <ScalarProperty Name="IdGender" ColumnName="IdGender" />
+                <ScalarProperty Name="IdViewIdOfClothing" ColumnName="IdViewIdOfClothing" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1017,7 +1018,6 @@
             <EntityTypeMapping TypeName="DBModel.TypeOfClothing">
               <MappingFragment StoreEntitySet="TypeOfClothing">
                 <ScalarProperty Name="IdTypeOfClothing" ColumnName="IdTypeOfClothing" />
-                <ScalarProperty Name="IdViewIdOfClothing" ColumnName="IdViewIdOfClothing" />
                 <ScalarProperty Name="NameIdTypeOfClothing" ColumnName="NameIdTypeOfClothing" />
               </MappingFragment>
             </EntityTypeMapping>

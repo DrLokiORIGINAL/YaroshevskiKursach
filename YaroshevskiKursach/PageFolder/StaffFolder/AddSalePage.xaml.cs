@@ -18,30 +18,28 @@ using YaroshevskiKursach.DataFolder;
 namespace YaroshevskiKursach.PageFolder.StaffFolder
 {
     /// <summary>
-    /// Логика взаимодействия для AddOnlinePage.xaml
+    /// Логика взаимодействия для AddSalePage.xaml
     /// </summary>
-    public partial class AddOnlinePage : Page
+    public partial class AddSalePage : Page
     {
-        public AddOnlinePage()
+        public AddSalePage()
         {
             InitializeComponent();
             StaffCb.ItemsSource = DBEntities.GetContext()
                 .Staff.ToList();
-            StoreCb.ItemsSource = DBEntities.GetContext()
-                .Store.ToList();
         }
 
         private void EditBtn_Click(object sender, RoutedEventArgs e)
         {
-            DBEntities.GetContext().AvailabilityInternet.Add(new AvailabilityInternet()
+            DBEntities.GetContext().Sale.Add(new Sale()
             {
-                IdStore = Int32.Parse(StoreCb.SelectedValue.ToString()),
+                DateSale = DateTime.Parse(DateSaleTb.Text),
+                QuantitySale = Int32.Parse(QuantitySaleTb.Text),
                 IdStaff = Int32.Parse(StaffCb.SelectedValue.ToString()),
-                QuantityAvailabilityInternet = Int32.Parse(QuantitySaleTb.Text),
             });
             DBEntities.GetContext().SaveChanges();
             MBClass.InformationMB("Успешно");
-            NavigationService.Navigate(new ListOnlinePage());
+            NavigationService.Navigate(new ListSalePage());
         }
     }
 }

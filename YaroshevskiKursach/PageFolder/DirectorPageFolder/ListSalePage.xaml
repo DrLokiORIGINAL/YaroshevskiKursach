@@ -4,11 +4,63 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:YaroshevskiKursach.PageFolder.DirectorPageFolder"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
+      MaxHeight="450" MaxWidth="800"
+      MinHeight="450" MinWidth="800"
       Title="ListSalePage">
 
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <TextBox x:Name="SearchTb"
+                 materialDesign:HintAssist.Hint="Поиск"
+                 TextChanged="SearchTb_TextChanged"
+                 Grid.ColumnSpan="2" BorderBrush="Black"
+                 BorderThickness="2"/>
+
+        <DataGrid x:Name="ListSaleDG" 
+                  IsReadOnly="True"
+                 AutoGenerateColumns="False" 
+                  Grid.ColumnSpan="2"
+                 Grid.Row="1" 
+                  Foreground="Black"
+                  BorderBrush="Black">
+            
+            <DataGrid.ContextMenu>
+                <ContextMenu Name="AdtCM">
+                    <Separator/>
+                    <MenuItem x:Name="Del"
+                        Header="Удалить"
+                 Click="Del_Click"/>
+                </ContextMenu>
+            </DataGrid.ContextMenu>
+            
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="№ п/п" 
+                                    Binding="{Binding IdSale}"
+                                    Width="*"/>
+
+                <DataGridTextColumn Header="Дата продажи" 
+                                    Binding="{Binding DateSale}"
+                                    Width="*"/>
+
+                <DataGridTextColumn Header="Количество проданных" 
+                                    Binding="{Binding QuantitySale}"
+                                    Width="*"/>
+
+                <DataGridTextColumn Header="Фамилия сотрудника" 
+                                    Binding="{Binding IdStaff.LastNameStaff}"
+                                    Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Page>

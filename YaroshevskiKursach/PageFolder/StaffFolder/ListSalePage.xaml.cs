@@ -15,7 +15,7 @@ using System.Windows.Shapes;
 using YaroshevskiKursach.ClassFolder;
 using YaroshevskiKursach.DataFolder;
 
-namespace YaroshevskiKursach.PageFolder.DirectorPageFolder
+namespace YaroshevskiKursach.PageFolder.StaffFolder
 {
     /// <summary>
     /// Логика взаимодействия для ListSalePage.xaml
@@ -28,6 +28,7 @@ namespace YaroshevskiKursach.PageFolder.DirectorPageFolder
             ListSaleDG.ItemsSource = DBEntities.GetContext().Sale.ToList()
                 .OrderBy(c => c.IdSale);
         }
+
         private void Del_Click(object sender, RoutedEventArgs e)
         {
             Sale sale = ListSaleDG.SelectedItem as Sale;
@@ -64,6 +65,20 @@ namespace YaroshevskiKursach.PageFolder.DirectorPageFolder
             if (ListSaleDG.Items.Count <= 0)
             {
                 MBClass.ErrorMB("Данные не найдены");
+            }
+        }
+
+        private void Red_Click(object sender, RoutedEventArgs e)
+        {
+            if (ListSaleDG.SelectedItem == null)
+            {
+                MBClass.ErrorMB("Выберите " +
+                    "продажу для редактирования");
+            }
+            else
+            {
+                NavigationService.Navigate(
+                    new EditSalePage(ListSaleDG.SelectedItem as Sale));
             }
         }
     }

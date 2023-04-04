@@ -4,11 +4,132 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:YaroshevskiKursach.PageFolder.DirectorPageFolder"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="650" d:DesignWidth="800"
+      MaxHeight="650" MaxWidth="800"
+      MinHeight="650" MinWidth="800"
       Title="EditDirPage">
 
-    <Grid>
-        
-    </Grid>
+    <Border>
+        <Grid>
+            <Label Content="Редактирование сотрудника" 
+                   Grid.Column="0"
+                   Grid.ColumnSpan="2"
+                   Style="{StaticResource LabelLogoStyle}"/>
+
+            <TextBox x:Name="LastNameTb"
+                     materialDesign:HintAssist.Hint="Фамилия"
+                     materialDesign:HintAssist.FontFamily="Cascadia Code SemiLight"
+                     materialDesign:HintAssist.HintOpacity="10"
+                     FontSize="20"
+                     Grid.Row="1"
+                     Grid.Column="0"
+                     Grid.ColumnSpan="2"
+                     VerticalAlignment="Top"
+                         Margin="150 15 150 3"
+                         materialDesign:HintAssist.FloatingOffset="0,-20"
+                                     BorderBrush="Black"
+                                     BorderThickness="0 0 0 1.5"
+                     Text="{Binding LastNameStaff}"/>
+
+            <TextBox x:Name="FirstNameTb"
+                     materialDesign:HintAssist.Hint="Имя"
+                     materialDesign:HintAssist.FontFamily="Cascadia Code SemiLight"
+                     materialDesign:HintAssist.HintOpacity="10"
+                     FontSize="20"
+                     Grid.Row="2"
+                     Grid.Column="0"
+                     Grid.ColumnSpan="2"
+                     VerticalAlignment="Top"
+                         Margin="150 15 150 3"
+                         materialDesign:HintAssist.FloatingOffset="0,-20"
+                                     BorderBrush="Black"
+                                     BorderThickness="0 0 0 1.5"
+                     Text="{Binding FirstNameStaff}"/>
+
+            <TextBox x:Name="MiddleNameTb"
+                     materialDesign:HintAssist.Hint="Отчество"
+                     materialDesign:HintAssist.FontFamily="Cascadia Code SemiLight"
+                     materialDesign:HintAssist.HintOpacity="10"
+                     FontSize="20"
+                     Grid.Row="3"
+                     Grid.Column="0"
+                     Grid.ColumnSpan="2"
+                     VerticalAlignment="Top"
+                         Margin="150 15 150 3"
+                         materialDesign:HintAssist.FloatingOffset="0,-20"
+                                     BorderBrush="Black"
+                                     BorderThickness="0 0 0 1.5"
+                     Text="{Binding MiddleNameStaff}"/>
+
+            <TextBox x:Name="PhoneNubmerTb"
+                     materialDesign:HintAssist.Hint="Номер телефона сотрудника"
+                     materialDesign:HintAssist.FontFamily="Cascadia Code SemiLight"
+                     materialDesign:HintAssist.HintOpacity="10"
+                     FontSize="20"
+                     Grid.Row="4"
+                     Grid.Column="0"
+                     Grid.ColumnSpan="2"
+                     VerticalAlignment="Top"
+                         Margin="150 15 150 3"
+                         materialDesign:HintAssist.FloatingOffset="0,-20"
+                                     BorderBrush="Black"
+                                     BorderThickness="0 0 0 1.5"
+                     Text="{Binding PhoneNubmerStaff}"/>
+
+            <TextBox x:Name="EmailTb"
+                     materialDesign:HintAssist.Hint="Эл. почта сотрудника"
+                     materialDesign:HintAssist.FontFamily="Cascadia Code SemiLight"
+                     materialDesign:HintAssist.HintOpacity="10"
+                     FontSize="20"
+                     Grid.Row="5"
+                     Grid.Column="0"
+                     Grid.ColumnSpan="2"
+                     VerticalAlignment="Top"
+                         Margin="150 15 150 3"
+                         materialDesign:HintAssist.FloatingOffset="0,-20"
+                                     BorderBrush="Black"
+                                     BorderThickness="0 0 0 1.5"
+                     Text="{Binding EmailStaff}"/>
+
+            <ComboBox x:Name="UserCb"
+                      materialDesign:ComboBoxAssist.ClassicMode="True"
+                      Grid.Row="6"
+                      Grid.Column="0"
+                      Grid.ColumnSpan="2"
+                      Margin="150 15 150 3"
+                      VerticalAlignment="Top"
+                      FontSize="20"
+                      FontFamily="Cascadia Code SemiLight"
+                      SelectedItem="{Binding User}" 
+                          DisplayMemberPath="LoginUser"
+                          SelectedValuePath="IdUser"/>
+
+            <Button x:Name="EditBtn" Content="Сохранить изменения"
+                    Grid.Row="8"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    Click="EditBtn_Click" Cursor="Hand"
+                    Margin="50 10 50 10"/>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="80"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+        </Grid>
+    </Border>
 </Page>

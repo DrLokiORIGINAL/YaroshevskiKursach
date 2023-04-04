@@ -62,7 +62,7 @@
                                Margin="20 30 20 30" 
                                Style="{StaticResource NormalText}" />
                     <Button Content="Зарегестрироваться"
-                            Style="{StaticResource button}" />
+                            Style="{StaticResource button}" Width="186" />
                 </StackPanel>
 
             </Grid>
